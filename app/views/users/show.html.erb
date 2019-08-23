@@ -1,4 +1,6 @@
 <% provide(:title, @user.name) %>
+<% provide(:path, user_path) %>
+<% provide(:search_name, 'Micropost search') %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -18,10 +20,25 @@
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Microposts (<%= @user.microposts.count %>)</h3>
+        </div>
+        <div class="search_form">
+          <%= render 'shared/search_form' %>
+        </div>
+      </div>
+      <% unless @microposts.empty? %>
+        <ol class="microposts">
+          <%= render @microposts %>
+        </ol>
+      <% else %>
+        <p>
+          Couldn't find any micropost.<br>
+          Please check search word you are looking for.
+        </p>
+      <% end %>
+      
       <%= will_paginate @microposts %>
     <% end %>
   </div>

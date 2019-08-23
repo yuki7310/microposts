@@ -83,6 +83,14 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  def self.search(search)
+    if search
+      where("name LIKE ?", "%#{search}%")
+    else
+      all
+    end
+  end
+  
   private
     
     def email_downcase

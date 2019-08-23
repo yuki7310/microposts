@@ -293,3 +293,21 @@ span.picture {
     border: 0;
   }
 }
+
+
+// search_form
+
+.search_form {
+  overflow: auto;
+  margin: 10px;
+  float: right;
+  .input-group {
+    width: 350px;
+    .form-control {
+      width: 280px;
+    }
+    .btn {
+      width: 70px;
+    }
+  }
+}

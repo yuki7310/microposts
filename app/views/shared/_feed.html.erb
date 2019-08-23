@@ -3,4 +3,9 @@
     <%= render @feed_items %>
   </ol>
   <%= will_paginate @feed_items %>
+<% else %>
+  <p>
+    Couldn't find any micropost.<br>
+    Please check search word you are looking for.
+  </p>
 <% end %>
