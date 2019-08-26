@@ -54,4 +54,30 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     get root_path
     assert_match "1 micropost", response.body
   end
+  
+  test "reply should display on correct feed" do
+    from_user = users(:michael)
+    to_user = users(:archer)
+    follower = users(:lana)
+    other_user = users(:malory)
+    log_in_as(from_user)
+    unique_name = to_user.unique_name
+    content = "@#{unique_name} reply test"
+    post microposts_path, params: {micropost: {content: content}}
+    micropost_id = from_user.microposts.first.id
+    get root_path
+    assert_select "#micropost-#{micropost_id} span.content", text: content
+    delete logout_path
+    log_in_as(to_user)
+    get root_path
+    assert_select "#micropost-#{micropost_id} span.content", text: content
+    delete logout_path
+    log_in_as(follower)
+    get root_path
+    assert_select "#micropost-#{micropost_id} span.content", text: content
+    delete logout_path
+    log_in_as(other_user)
+    get root_path
+    assert_select "#micropost-#{micropost_id} span.content", text: content, count: 0
+  end
 end
