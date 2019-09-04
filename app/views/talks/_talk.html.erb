@@ -1,0 +1,12 @@
+<li id="talk-<%= talk.id %>">
+  <% message = talk.latest_message %>
+  <% membership = talk.memberships.find_by(user: current_user) %>
+  <%= link_to(talk) do %>
+    <%= gravatar_for(talk.to_user(current_user), size: 50) %>
+    <span class="title"><%= talk.to_user(current_user).name %></span>
+    <span class="content"><%= message ? message.content : "No messages" %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(talk.updated_at) %> ago.
+    </span>
+  <% end %>
+</li>

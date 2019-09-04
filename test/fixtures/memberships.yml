@@ -1,0 +1,13 @@
+<% count = 0 %>
+<% m = 0 %>
+<% 30.times do |t| %>
+membership_<%= count %>:
+  talk: talk_<%= t %>
+  user: michael
+    <% count += 1 %>
+membership_<%= count %>:
+  talk: talk_<%= t %>
+  user: user_<%= m %>
+    <% count += 1 %>
+    <% m += 1 %>
+<% end %>

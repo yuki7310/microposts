@@ -1,0 +1,15 @@
+<% count = 0 %>
+<% m = 0 %>
+<% 30.times do |t| %>
+message_<%= count %>:
+  talk: talk_<%= t %>
+  user: michael
+  content: <%= Faker::Lorem.sentence(5) %>
+    <% count += 1 %>
+message_<%= count %>:
+  talk: talk_<%= t %>
+  user: user_<%= m %>
+  content: <%= Faker::Lorem.sentence(5) %>
+    <% count += 1 %>
+    <% m += 1 %>
+<% end %>

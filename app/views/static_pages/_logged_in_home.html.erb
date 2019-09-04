@@ -14,13 +14,23 @@
   </aside>
   <div class="col-md-8">
     <div class="row">
-      <div class="col-md-4">
-        <h3>Micropost Feed</h3>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#feed-tab" data-toggle="tab">Micropost Feed</a></li>
+          <li><a href="#talks-tab" data-toggle="tab">Messages</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="feed-tab">
+        <div class="row">
+          <div class="search_form">
+            <%= render 'shared/search_form' %>
+          </div>
+        </div>
+        <%= render 'shared/feed' %>
       </div>
-      <div class="search_form">
-        <%= render 'shared/search_form' %>
+      <div class="tab-pane" id="talks-tab">
+        <%= render 'shared/talks' %>
       </div>
     </div>
-    <%= render 'shared/feed' %>
   </div>
 </div>

@@ -16,6 +16,14 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+    <section class="talk" >
+      <% if @user != current_user %>
+        <%= form_for @talk do |f| %>
+          <%= hidden_field_tag :member_id, @user.id %>
+          <%= f.submit "Message", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </section>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
@@ -39,7 +47,7 @@
         </p>
       <% end %>
       
-      <%= will_paginate @microposts %>
+      <%= paginate @microposts %>
     <% end %>
   </div>
 </div>

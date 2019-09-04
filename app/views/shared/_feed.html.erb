@@ -2,10 +2,9 @@
   <ol class="microposts">
     <%= render @feed_items %>
   </ol>
-  <%= will_paginate @feed_items %>
+  <%= paginate @feed_items, param_name: :feed_page %>
 <% else %>
   <p>
-    Couldn't find any micropost.<br>
-    Please check search word you are looking for.
+    Couldn't find any micropost.
   </p>
 <% end %>

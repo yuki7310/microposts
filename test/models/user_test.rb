@@ -110,4 +110,19 @@ class UserTest < ActiveSupport::TestCase
       assert_not michael.feed.include?(unfollowed_post)
     end
   end
+  
+  test "associated memberships should be destroyed" do
+    user = users(:user_0)
+    assert_difference "Membership.count", -1 do
+      user.destroy
+    end
+  end
+  
+  test "associated messages should be destroyed" do
+    user = users(:user_0)
+    assert_difference "Message.count", -1 do
+      user.destroy
+    end
+  end
+  
 end
