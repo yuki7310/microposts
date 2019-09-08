@@ -80,6 +80,9 @@ class User < ApplicationRecord
   
   def follow(other_user)
     following << other_user
+    if other_user.follow_notification?
+      Relationship.send_follow_email(other_user, self)
+    end
   end
   
   def unfollow(other_user)

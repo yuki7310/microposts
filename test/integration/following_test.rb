@@ -60,4 +60,15 @@ class FollowingTest < ActionDispatch::IntegrationTest
       assert_match CGI.escapeHTML(micropost.content), response.body
     end
   end
+  
+  test "should send follow notification email" do
+    post relationships_path, params: { followed_id: @other.id }
+    assert_equal 1, ActionMailer::Base.deliveries.size
+  end
+  
+  test "should not send follow notification email" do
+    not_notify = users(:user_1)
+    post relationships_path, params: { followed_id: not_notify.id }
+    assert_equal 0, ActionMailer::Base.deliveries.size
+  end
 end

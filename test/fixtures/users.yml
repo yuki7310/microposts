@@ -14,6 +14,7 @@ archer:
   activated: true
   activated_at: <%= Time.zone.now %>
   unique_name: sterling_archer
+  follow_notification: true
 
 lana:
   name: Lana Kane
